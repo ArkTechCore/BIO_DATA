@@ -86,7 +86,7 @@
         <aside class="photo-panel" aria-label="Profile photo">
           <!-- Add your real photo as profile-photo.jpg in this same folder. -->
           <div class="photo-frame">
-            <img class="profile-photo" id="profile-photo" src="profile-photo.jpg" alt="Profile photo of Mohammed Yousuf">
+            <img class="profile-photo" src="profile-photo.jpg" alt="Profile photo of Mohammed Yousuf" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" onload="this.nextElementSibling.style.display='none';">
             <div class="photo-placeholder">
               <div class="photo-monogram">MY</div>
               <p>Photo space<br><span>Add profile-photo.jpg</span></p>

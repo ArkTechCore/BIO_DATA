@@ -2,8 +2,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
 const pdfButtons = document.querySelectorAll("[data-download-pdf]");
 const lockButton = document.querySelector("#lock-button");
-const profilePhoto = document.querySelector("#profile-photo");
-const photoPanel = document.querySelector(".photo-panel");
 const accessScreen = document.querySelector("#access-screen");
 const accessForm = document.querySelector("#access-form");
 const accessCodeInput = document.querySelector("#access-code");
@@ -67,20 +65,6 @@ if (lockButton) {
     { passive: true }
   );
 });
-
-if (profilePhoto && photoPanel) {
-  if (profilePhoto.complete && profilePhoto.naturalWidth > 0) {
-    photoPanel.classList.add("has-photo");
-  }
-
-  profilePhoto.addEventListener("load", () => {
-    photoPanel.classList.add("has-photo");
-  });
-
-  profilePhoto.addEventListener("error", () => {
-    photoPanel.classList.remove("has-photo");
-  });
-}
 
 if (navToggle && navLinks) {
   navToggle.addEventListener("click", () => {
