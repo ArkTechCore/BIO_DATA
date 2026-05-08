@@ -84,13 +84,18 @@
         </div>
 
         <aside class="photo-panel" aria-label="Profile photo">
-          <!-- Add your real photo as profile-photo.jpg in this same folder. -->
-          <div class="photo-frame">
-            <img class="profile-photo" src="profile-photo.jpg" alt="Profile photo of Mohammed Yousuf" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" onload="this.nextElementSibling.style.display='none';">
+          <div class="photo-frame main-photo">
+            <img class="profile-photo" src="profile-photo.jpg" alt="Formal profile photo of Mohammed Yousuf" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" onload="this.nextElementSibling.style.display='none';">
             <div class="photo-placeholder">
               <div class="photo-monogram">MY</div>
               <p>Photo space<br><span>Add profile-photo.jpg</span></p>
             </div>
+          </div>
+          <div class="photo-strip">
+            <div class="photo-frame secondary-photo">
+              <img class="profile-photo" src="secondary-photo.jpg" alt="Additional photo of Mohammed Yousuf" onerror="this.parentElement.style.display='none';">
+            </div>
+            <p>Formal and natural photos are included for family review.</p>
           </div>
         </aside>
       </div>

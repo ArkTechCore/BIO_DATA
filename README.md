@@ -47,3 +47,16 @@ Mohammed_Yousuf_Marriage_Biodata.pdf
 ## Privacy Note
 
 The site includes a simple frontend access code for basic privacy. For stronger static-page privacy on GitHub Pages, use an encrypted static-page tool such as StatiCrypt before publishing.
+
+## Free Open-Source Protection Option
+
+This repo includes a ready script for StatiCrypt, a free open-source static HTML encryption tool.
+
+Run this when you want to generate an encrypted version:
+
+```powershell
+npm install
+npm run protect
+```
+
+It creates a protected version inside the `protected` folder using password `0408`.

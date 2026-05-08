@@ -182,11 +182,7 @@ function loadImageData(url) {
   });
 }
 
-function addPdfPhoto(doc, imageData) {
-  const x = 166;
-  const y = 17;
-  const width = 24;
-  const height = 32;
+function addPdfPhoto(doc, imageData, x, y, width, height, label = "Photo") {
 
   doc.setDrawColor(185, 143, 57);
   doc.setLineWidth(0.35);
@@ -202,8 +198,7 @@ function addPdfPhoto(doc, imageData) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   doc.setTextColor(105, 116, 109);
-  doc.text("Photo", x + width / 2, y + 15, { align: "center" });
-  doc.text("space", x + width / 2, y + 20, { align: "center" });
+  doc.text(label, x + width / 2, y + height / 2, { align: "center" });
 }
 
 function addFooter(doc) {
@@ -286,7 +281,9 @@ async function generateBiodataPdf() {
   doc.setLineWidth(0.8);
   doc.rect(9, 9, 192, 279);
   const imageData = await loadImageData("profile-photo.jpg");
-  addPdfPhoto(doc, imageData);
+  const secondaryImageData = await loadImageData("secondary-photo.jpg");
+  addPdfPhoto(doc, imageData, 162, 17, 26, 34, "Formal");
+  addPdfPhoto(doc, secondaryImageData, 132, 20, 22, 28, "Natural");
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(12);

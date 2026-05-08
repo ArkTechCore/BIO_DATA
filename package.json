@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "protect": "npx staticrypt index.html -p 0408 -d protected"
+  }
+}

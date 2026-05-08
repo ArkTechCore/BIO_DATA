@@ -27,15 +27,11 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background-color: #073b35;
-  background-image:
-    radial-gradient(circle at 12px 12px, rgba(217, 193, 124, 0.28) 2px, transparent 2.5px),
-    radial-gradient(circle at 36px 36px, rgba(255, 253, 248, 0.12) 1.5px, transparent 2px),
-    linear-gradient(45deg, rgba(217, 193, 124, 0.12) 25%, transparent 25%, transparent 75%, rgba(217, 193, 124, 0.12) 75%),
-    linear-gradient(135deg, rgba(217, 193, 124, 0.1) 25%, transparent 25%, transparent 75%, rgba(217, 193, 124, 0.1) 75%);
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  background-size: 48px 48px, 48px 48px, 96px 96px, 96px 96px;
-  background-attachment: fixed;
+  background:
+    linear-gradient(rgba(255, 253, 248, 0.93), rgba(255, 253, 248, 0.93)),
+    radial-gradient(circle at 20px 20px, rgba(185, 143, 57, 0.18) 2px, transparent 2.5px),
+    linear-gradient(135deg, #0b3d36 0%, #0f4b42 100%);
+  background-size: auto, 44px 44px, auto;
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.75;
@@ -93,9 +89,10 @@ button {
   place-items: center;
   padding: 28px;
   background:
-    radial-gradient(circle at top left, rgba(216, 191, 122, 0.22), transparent 28rem),
-    linear-gradient(rgba(7, 59, 53, 0.76), rgba(7, 59, 53, 0.82)),
-    repeating-linear-gradient(45deg, rgba(217, 193, 124, 0.22) 0 1px, transparent 1px 18px);
+    linear-gradient(rgba(7, 59, 53, 0.78), rgba(7, 59, 53, 0.84)),
+    radial-gradient(circle at 20px 20px, rgba(217, 193, 124, 0.32) 2px, transparent 2.5px),
+    linear-gradient(135deg, #073b35, #0f4b42);
+  background-size: auto, 44px 44px, auto;
 }
 
 .access-card {
@@ -284,8 +281,7 @@ button {
 .section-band {
   position: relative;
   background:
-    radial-gradient(circle at top left, rgba(216, 191, 122, 0.24), transparent 30rem),
-    linear-gradient(135deg, rgba(255, 253, 248, 0.97) 0%, rgba(247, 239, 224, 0.96) 100%);
+    linear-gradient(135deg, rgba(255, 253, 248, 0.98) 0%, rgba(247, 239, 224, 0.97) 100%);
 }
 
 .hero {
@@ -298,11 +294,12 @@ button {
 .hero-pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.16;
+  opacity: 0.18;
   background-image:
-    linear-gradient(30deg, rgba(18, 63, 50, 0.11) 12%, transparent 12.5%, transparent 87%, rgba(18, 63, 50, 0.11) 87.5%, rgba(18, 63, 50, 0.11)),
-    linear-gradient(150deg, rgba(18, 63, 50, 0.11) 12%, transparent 12.5%, transparent 87%, rgba(18, 63, 50, 0.11) 87.5%, rgba(18, 63, 50, 0.11));
-  background-size: 84px 148px;
+    radial-gradient(circle at 25px 25px, rgba(185, 143, 57, 0.32) 2px, transparent 2.5px),
+    linear-gradient(30deg, rgba(18, 63, 50, 0.1) 12%, transparent 12.5%, transparent 87%, rgba(18, 63, 50, 0.1) 87.5%, rgba(18, 63, 50, 0.1)),
+    linear-gradient(150deg, rgba(18, 63, 50, 0.1) 12%, transparent 12.5%, transparent 87%, rgba(18, 63, 50, 0.1) 87.5%, rgba(18, 63, 50, 0.1));
+  background-size: 50px 50px, 84px 148px, 84px 148px;
   pointer-events: none;
 }
 
@@ -415,8 +412,8 @@ h3 {
 }
 
 .photo-panel {
-  padding: 18px;
-  background: rgba(255, 253, 248, 0.68);
+  padding: 14px;
+  background: rgba(255, 253, 248, 0.88);
   border: 1px solid rgba(185, 143, 57, 0.34);
   border-radius: 8px;
   box-shadow: var(--shadow);
@@ -424,23 +421,25 @@ h3 {
 
 .photo-frame {
   position: relative;
-  min-height: 440px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #fffdf8;
 }
 
+.main-photo {
+  height: 430px;
+}
+
 .profile-photo {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 440px;
   object-fit: cover;
 }
 
 .photo-placeholder {
-  min-height: 440px;
+  min-height: 430px;
   display: none;
   place-items: center;
   align-content: center;
@@ -452,6 +451,28 @@ h3 {
     repeating-linear-gradient(45deg, rgba(185, 143, 57, 0.12) 0 1px, transparent 1px 18px);
   border: 1px solid var(--line);
   border-radius: 6px;
+}
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: 94px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(18, 63, 50, 0.12);
+}
+
+.secondary-photo {
+  width: 94px;
+  height: 112px;
+}
+
+.photo-strip p {
+  margin: 0;
+  color: #5d6a62;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .photo-monogram {
