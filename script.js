@@ -69,6 +69,10 @@ if (lockButton) {
 });
 
 if (profilePhoto && photoPanel) {
+  if (profilePhoto.complete && profilePhoto.naturalWidth > 0) {
+    photoPanel.classList.add("has-photo");
+  }
+
   profilePhoto.addEventListener("load", () => {
     photoPanel.classList.add("has-photo");
   });
