@@ -419,7 +419,7 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-.photo-frame {
+.photo-slider {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -427,8 +427,15 @@ h3 {
   background: #fffdf8;
 }
 
-.main-photo {
+.photo-track {
+  display: flex;
+  transition: transform 280ms ease;
+}
+
+.photo-slide {
+  min-width: 100%;
   height: 430px;
+  margin: 0;
 }
 
 .profile-photo {
@@ -438,66 +445,49 @@ h3 {
   object-fit: cover;
 }
 
-.photo-placeholder {
-  min-height: 430px;
-  display: none;
-  place-items: center;
-  align-content: center;
-  gap: 20px;
-  padding: 34px;
-  text-align: center;
-  background:
-    linear-gradient(rgba(18, 63, 50, 0.05), rgba(18, 63, 50, 0.05)),
-    repeating-linear-gradient(45deg, rgba(185, 143, 57, 0.12) 0 1px, transparent 1px 18px);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-}
-
-.photo-strip {
-  display: grid;
-  grid-template-columns: 94px minmax(0, 1fr);
-  gap: 12px;
+.slider-controls {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 14px;
   margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(18, 63, 50, 0.12);
 }
 
-.secondary-photo {
-  width: 94px;
-  height: 112px;
-}
-
-.photo-strip p {
-  margin: 0;
-  color: #5d6a62;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.photo-monogram {
-  width: 132px;
-  height: 132px;
+.slider-button {
+  width: 38px;
+  height: 38px;
   display: grid;
   place-items: center;
   color: var(--green);
-  background: rgba(255, 253, 248, 0.88);
-  border: 1px solid rgba(185, 143, 57, 0.42);
+  background: rgba(216, 191, 122, 0.18);
+  border: 1px solid rgba(18, 63, 50, 0.14);
   border-radius: 50%;
-  font-family: var(--serif);
-  font-size: 3.15rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.photo-placeholder p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
+.slider-dots {
+  display: flex;
+  gap: 7px;
 }
 
-.photo-placeholder span {
-  color: #7b837c;
-  font-size: 0.84rem;
+.slider-dots span {
+  width: 8px;
+  height: 8px;
+  background: rgba(18, 63, 50, 0.25);
+  border-radius: 50%;
+}
+
+.slider-dots span.is-active {
+  background: var(--green);
+}
+
+.photo-caption {
+  margin: 10px 0 0;
+  color: #5d6a62;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .section-block,
@@ -786,9 +776,6 @@ h3 {
     border-bottom: 0;
   }
 
-  .photo-placeholder {
-    min-height: 340px;
-  }
 }
 
 @media (max-width: 640px) {

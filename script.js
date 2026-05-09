@@ -2,6 +2,10 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
 const pdfButtons = document.querySelectorAll("[data-download-pdf]");
 const lockButton = document.querySelector("#lock-button");
+const photoTrack = document.querySelector(".photo-track");
+const photoSlides = document.querySelectorAll(".photo-slide");
+const sliderButtons = document.querySelectorAll("[data-slide]");
+const sliderDots = document.querySelectorAll(".slider-dots span");
 const accessScreen = document.querySelector("#access-screen");
 const accessForm = document.querySelector("#access-form");
 const accessCodeInput = document.querySelector("#access-code");
@@ -78,6 +82,56 @@ if (navToggle && navLinks) {
       navToggle.setAttribute("aria-expanded", "false");
     });
   });
+}
+
+let currentSlide = 0;
+
+function showSlide(index) {
+  if (!photoTrack || !photoSlides.length) return;
+
+  currentSlide = (index + photoSlides.length) % photoSlides.length;
+  photoTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+  sliderDots.forEach((dot, dotIndex) => {
+    dot.classList.toggle("is-active", dotIndex === currentSlide);
+  });
+}
+
+sliderButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const direction = button.dataset.slide === "next" ? 1 : -1;
+    showSlide(currentSlide + direction);
+  });
+});
+
+let touchStartX = 0;
+
+if (photoTrack) {
+  photoTrack.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  photoTrack.addEventListener(
+    "touchend",
+    (event) => {
+      const touchEndX = event.changedTouches[0].clientX;
+      const distance = touchEndX - touchStartX;
+
+      if (Math.abs(distance) > 40) {
+        showSlide(currentSlide + (distance < 0 ? 1 : -1));
+      }
+    },
+    { passive: true }
+  );
+}
+
+if (photoSlides.length > 1) {
+  window.setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 5500);
 }
 
 const personalDetails = [
@@ -174,7 +228,11 @@ function loadImageData(url) {
       canvas.height = image.naturalHeight;
       const context = canvas.getContext("2d");
       context.drawImage(image, 0, 0);
-      resolve(canvas.toDataURL("image/jpeg", 0.9));
+      resolve({
+        dataUrl: canvas.toDataURL("image/jpeg", 0.9),
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      });
     };
 
     image.onerror = () => resolve(null);
@@ -182,23 +240,53 @@ function loadImageData(url) {
   });
 }
 
-function addPdfPhoto(doc, imageData, x, y, width, height, label = "Photo") {
+function addImageContained(doc, image, x, y, maxWidth, maxHeight) {
+  if (!image) return;
 
+  const ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
+  const width = image.width * ratio;
+  const height = image.height * ratio;
+  const centeredX = x + (maxWidth - width) / 2;
+  const centeredY = y + (maxHeight - height) / 2;
+
+  doc.addImage(image.dataUrl, "JPEG", centeredX, centeredY, width, height);
+}
+
+async function addPhotoPage(doc) {
+  const formalPhoto = await loadImageData("profile-photo.jpg");
+  const naturalPhoto = await loadImageData("secondary-photo.jpg");
+
+  if (!formalPhoto && !naturalPhoto) return;
+
+  doc.addPage();
+  doc.setFillColor(255, 253, 248);
+  doc.rect(0, 0, 210, 297, "F");
   doc.setDrawColor(185, 143, 57);
-  doc.setLineWidth(0.35);
-  doc.rect(x, y, width, height);
+  doc.setLineWidth(0.8);
+  doc.rect(9, 9, 192, 279);
 
-  if (imageData) {
-    doc.addImage(imageData, "JPEG", x, y, width, height);
-    return;
-  }
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(18, 63, 50);
+  doc.text("Photos", 105, 24, { align: "center" });
 
-  doc.setFillColor(248, 241, 229);
-  doc.rect(x, y, width, height, "F");
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(105, 116, 109);
-  doc.text(label, x + width / 2, y + height / 2, { align: "center" });
+  doc.setFontSize(9.8);
+  doc.setTextColor(64, 80, 72);
+  doc.text("Included for family review.", 105, 32, { align: "center" });
+
+  doc.setDrawColor(218, 209, 189);
+  doc.setLineWidth(0.35);
+  doc.rect(20, 44, 78, 104);
+  doc.rect(112, 44, 78, 104);
+  addImageContained(doc, formalPhoto, 22, 46, 74, 100);
+  addImageContained(doc, naturalPhoto, 114, 46, 74, 100);
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+  doc.setTextColor(18, 63, 50);
+  doc.text("Formal Photo", 59, 158, { align: "center" });
+  doc.text("Additional Photo", 151, 158, { align: "center" });
 }
 
 function addFooter(doc) {
@@ -280,11 +368,6 @@ async function generateBiodataPdf() {
   doc.setDrawColor(185, 143, 57);
   doc.setLineWidth(0.8);
   doc.rect(9, 9, 192, 279);
-  const imageData = await loadImageData("profile-photo.jpg");
-  const secondaryImageData = await loadImageData("secondary-photo.jpg");
-  addPdfPhoto(doc, imageData, 162, 17, 26, 34, "Formal");
-  addPdfPhoto(doc, secondaryImageData, 132, 20, 22, 28, "Natural");
-
   doc.setFont("helvetica", "normal");
   doc.setFontSize(12);
   doc.setTextColor(18, 63, 50);
@@ -306,7 +389,7 @@ async function generateBiodataPdf() {
   doc.text(intro, 105, 52, { align: "center", maxWidth: 170 });
 
   doc.autoTable({
-    startY: 62,
+    startY: 58,
     head: [["Personal Details", ""]],
     body: personalDetails,
     theme: "grid",
@@ -392,6 +475,7 @@ async function generateBiodataPdf() {
     },
   });
 
+  await addPhotoPage(doc);
   addFooter(doc);
   doc.save("Mohammed_Yousuf_Marriage_Biodata.pdf");
 }

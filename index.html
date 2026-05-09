@@ -83,20 +83,26 @@
           </div>
         </div>
 
-        <aside class="photo-panel" aria-label="Profile photo">
-          <div class="photo-frame main-photo">
-            <img class="profile-photo" src="profile-photo.jpg" alt="Formal profile photo of Mohammed Yousuf" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" onload="this.nextElementSibling.style.display='none';">
-            <div class="photo-placeholder">
-              <div class="photo-monogram">MY</div>
-              <p>Photo space<br><span>Add profile-photo.jpg</span></p>
+        <aside class="photo-panel" aria-label="Profile photo slideshow">
+          <div class="photo-slider">
+            <div class="photo-track">
+              <figure class="photo-slide">
+                <img class="profile-photo" src="profile-photo.jpg" alt="Formal profile photo of Mohammed Yousuf">
+              </figure>
+              <figure class="photo-slide">
+                <img class="profile-photo" src="secondary-photo.jpg" alt="Additional photo of Mohammed Yousuf">
+              </figure>
             </div>
           </div>
-          <div class="photo-strip">
-            <div class="photo-frame secondary-photo">
-              <img class="profile-photo" src="secondary-photo.jpg" alt="Additional photo of Mohammed Yousuf" onerror="this.parentElement.style.display='none';">
+          <div class="slider-controls" aria-label="Photo slideshow controls">
+            <button type="button" class="slider-button" data-slide="prev" aria-label="Previous photo">‹</button>
+            <div class="slider-dots" aria-hidden="true">
+              <span class="is-active"></span>
+              <span></span>
             </div>
-            <p>Formal and natural photos are included for family review.</p>
+            <button type="button" class="slider-button" data-slide="next" aria-label="Next photo">›</button>
           </div>
+          <p class="photo-caption">Swipe or use the arrows to view photos.</p>
         </aside>
       </div>
     </section>
