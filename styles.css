@@ -412,19 +412,16 @@ h3 {
 }
 
 .photo-panel {
-  padding: 14px;
-  background: rgba(255, 253, 248, 0.88);
-  border: 1px solid rgba(185, 143, 57, 0.34);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  position: relative;
 }
 
 .photo-slider {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 6px;
+  border: 8px solid rgba(255, 253, 248, 0.92);
+  border-radius: 8px;
   background: #fffdf8;
+  box-shadow: var(--shadow);
 }
 
 .photo-track {
@@ -434,7 +431,7 @@ h3 {
 
 .photo-slide {
   min-width: 100%;
-  height: 430px;
+  height: 520px;
   margin: 0;
 }
 
@@ -445,46 +442,61 @@ h3 {
   object-fit: cover;
 }
 
-.slider-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 12px;
-}
-
 .slider-button {
-  width: 38px;
-  height: 38px;
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 46px;
+  height: 46px;
   display: grid;
   place-items: center;
-  color: var(--green);
-  background: rgba(216, 191, 122, 0.18);
-  border: 1px solid rgba(18, 63, 50, 0.14);
+  color: #fffdf8;
+  background: rgba(18, 63, 50, 0.82);
+  border: 1px solid rgba(255, 253, 248, 0.28);
   border-radius: 50%;
   font-size: 1.8rem;
   line-height: 1;
   cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.slider-button:hover,
+.slider-button:focus-visible {
+  background: rgba(18, 63, 50, 0.96);
+}
+
+.slider-button-prev {
+  left: 14px;
+}
+
+.slider-button-next {
+  right: 14px;
 }
 
 .slider-dots {
+  position: absolute;
+  right: 0;
+  bottom: 14px;
+  left: 0;
   display: flex;
+  justify-content: center;
   gap: 7px;
 }
 
 .slider-dots span {
-  width: 8px;
-  height: 8px;
-  background: rgba(18, 63, 50, 0.25);
+  width: 9px;
+  height: 9px;
+  background: rgba(255, 253, 248, 0.68);
+  border: 1px solid rgba(18, 63, 50, 0.36);
   border-radius: 50%;
 }
 
 .slider-dots span.is-active {
-  background: var(--green);
+  background: var(--gold);
 }
 
 .photo-caption {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   color: #5d6a62;
   font-size: 0.9rem;
   text-align: center;

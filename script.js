@@ -232,6 +232,7 @@ function loadImageData(url) {
         dataUrl: canvas.toDataURL("image/jpeg", 0.9),
         width: image.naturalWidth,
         height: image.naturalHeight,
+        element: image,
       });
     };
 
@@ -250,6 +251,34 @@ function addImageContained(doc, image, x, y, maxWidth, maxHeight) {
   const centeredY = y + (maxHeight - height) / 2;
 
   doc.addImage(image.dataUrl, "JPEG", centeredX, centeredY, width, height);
+}
+
+function addImageCover(doc, image, x, y, boxWidth, boxHeight) {
+  if (!image) return;
+
+  const canvas = document.createElement("canvas");
+  const scale = Math.max(boxWidth / image.width, boxHeight / image.height);
+  const sourceWidth = boxWidth / scale;
+  const sourceHeight = boxHeight / scale;
+  const sourceX = (image.width - sourceWidth) / 2;
+  const sourceY = (image.height - sourceHeight) / 2;
+  canvas.width = Math.round(boxWidth * 8);
+  canvas.height = Math.round(boxHeight * 8);
+  const context = canvas.getContext("2d");
+
+  context.drawImage(
+    image.element,
+    sourceX,
+    sourceY,
+    sourceWidth,
+    sourceHeight,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  doc.addImage(canvas.toDataURL("image/jpeg", 0.9), "JPEG", x, y, boxWidth, boxHeight);
 }
 
 async function addPhotoPage(doc) {
@@ -275,18 +304,18 @@ async function addPhotoPage(doc) {
   doc.setTextColor(64, 80, 72);
   doc.text("Included for family review.", 105, 32, { align: "center" });
 
-  doc.setDrawColor(218, 209, 189);
-  doc.setLineWidth(0.35);
-  doc.rect(20, 44, 78, 104);
-  doc.rect(112, 44, 78, 104);
-  addImageContained(doc, formalPhoto, 22, 46, 74, 100);
-  addImageContained(doc, naturalPhoto, 114, 46, 74, 100);
+  doc.setDrawColor(185, 143, 57);
+  doc.setLineWidth(0.45);
+  doc.rect(14, 44, 88, 160);
+  doc.rect(108, 44, 88, 160);
+  addImageCover(doc, formalPhoto, 16, 46, 84, 156);
+  addImageCover(doc, naturalPhoto, 110, 46, 84, 156);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10);
   doc.setTextColor(18, 63, 50);
-  doc.text("Formal Photo", 59, 158, { align: "center" });
-  doc.text("Additional Photo", 151, 158, { align: "center" });
+  doc.text("Formal Photo", 58, 214, { align: "center" });
+  doc.text("Additional Photo", 152, 214, { align: "center" });
 }
 
 function addFooter(doc) {
