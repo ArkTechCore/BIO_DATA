@@ -181,7 +181,7 @@ const biodataSections = [
   {
     title: "Extended Family",
     body:
-      "My father has four elder brothers and one younger brother. His elder brothers include Mohammed Haji (Rahimahullah), Mohammed Sajid Ali, and Mohammed Majid Ali. My father, Mohammed Wajeed, is a Government Employee working as a GHMC Supervisor. His younger brother, Mohammed Mujahid, recently retired after working in Saudi Arabia.",
+      "My father has four elder brothers and one younger brother. His elder brothers include Mohammed Haji (Rahimahullah), Mohammed Sajid Ali, Retired Government Employee, and Mohammed Majid Ali, who owns an automobile parts business. My father, Mohammed Wajeed, is a Government Employee working as a GHMC Supervisor. His younger brother, Mohammed Mujahid, recently retired after working in Saudi Arabia.",
   },
   {
     title: "Religious Values",
