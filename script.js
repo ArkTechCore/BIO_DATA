@@ -166,12 +166,12 @@ const biodataSections = [
   {
     title: "Education",
     body:
-      "I am currently pursuing my Bachelor's in Computer Science & Information Technology at Monroe University in the United States. My expected graduation is in 2027. I am interested in software development, backend systems, business technology, automation, and practical software solutions.",
+      "I am currently pursuing my Bachelor's in Computer Science & Information Technology at Monroe University in the United States. My expected graduation is in 2027. I am interested in software development and practical technology that can be used in real situations.",
   },
   {
     title: "Work & Professional Background",
     body:
-      "Along with my studies, I work in a convenience retail store in the United States. For the same business, I also do freelance software development work, mainly around systems that can make daily store work more organized. I am involved in building a customer loyalty application and backend systems for store operations, customer engagement, and digital workflows. Through this, I have been learning application development, database-backed systems, backend work, retail technology, workflow automation, and how small business operations actually run day to day.",
+      "Along with my studies, I work in a convenience retail store in the United States. I also help the same business with software-related work when needed. I have been involved in building a customer loyalty application and simple tools that support store operations and customer engagement. This has helped me learn how technology can be useful in a real business setting.",
   },
   {
     title: "Family Details",
@@ -201,12 +201,12 @@ const biodataSections = [
   {
     title: "Interests",
     body:
-      "My interests include Islamic learning, beneficial lectures, Islamic history, technology, software development, business systems, automation, entrepreneurship, and understanding how real businesses operate. I also like researching topics properly when something catches my attention.",
+      "My interests include Islamic learning, beneficial lectures, Islamic history, technology, software development, business ideas, and self-improvement.",
   },
   {
     title: "Future Vision",
     body:
-      "InshaAllah, I want to complete my education and continue growing in software development and business technology. Over time, I hope to build useful systems that help real businesses operate better through software and automation. More than anything, I want a stable halal future, meaningful work, and a family life built with Islamic values and responsibility.",
+      "InshaAllah, I want to complete my education and continue growing professionally. I hope to use my skills in a meaningful way and keep improving with time. More than anything, I want a stable halal future, meaningful work, and a family life built with Islamic values and responsibility.",
   },
   {
     title: "Marriage Expectations",
