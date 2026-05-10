@@ -159,7 +159,7 @@ const familyDetails = [
   ["Father's Occupation", "Government Employee, GHMC Supervisor"],
   ["Mother", "Zareena Begum"],
   ["Mother's Occupation", "Homemaker"],
-  ["Siblings", "3 younger sisters: one pursuing Bachelor's in Pharmacy, one in Intermediate (Science), and one in school"],
+  ["Siblings", "3 younger sisters\n1. Bachelor's in Pharmacy\n2. Intermediate (Science)\n3. School"],
 ];
 
 const biodataSections = [
@@ -176,7 +176,7 @@ const biodataSections = [
   {
     title: "Family Details",
     body:
-      "Alhamdulillah, we belong to a close-knit Muslim family from Hyderabad. Our family values deen, respect, education, simplicity, and good character.",
+      "Alhamdulillah, I belong to a close-knit Muslim family from Hyderabad. My family values deen, respect, education, simplicity, and good character.",
   },
   {
     title: "Extended Family",
