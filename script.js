@@ -159,7 +159,7 @@ const familyDetails = [
   ["Father's Occupation", "Government Employee, GHMC Supervisor"],
   ["Mother", "Zareena Begum"],
   ["Mother's Occupation", "Homemaker"],
-  ["Siblings", "3 younger sisters"],
+  ["Siblings", "3 younger sisters: one pursuing Bachelor's in Pharmacy, one in Intermediate (Science), and one in school"],
 ];
 
 const biodataSections = [
