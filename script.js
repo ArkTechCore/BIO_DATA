@@ -2,10 +2,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
 const pdfButtons = document.querySelectorAll("[data-download-pdf]");
 const lockButton = document.querySelector("#lock-button");
-const photoTrack = document.querySelector(".photo-track");
-const photoSlides = document.querySelectorAll(".photo-slide");
-const sliderButtons = document.querySelectorAll("[data-slide]");
-const sliderDots = document.querySelectorAll(".slider-dots span");
 const accessScreen = document.querySelector("#access-screen");
 const accessForm = document.querySelector("#access-form");
 const accessCodeInput = document.querySelector("#access-code");
@@ -84,61 +80,11 @@ if (navToggle && navLinks) {
   });
 }
 
-let currentSlide = 0;
-
-function showSlide(index) {
-  if (!photoTrack || !photoSlides.length) return;
-
-  currentSlide = (index + photoSlides.length) % photoSlides.length;
-  photoTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-  sliderDots.forEach((dot, dotIndex) => {
-    dot.classList.toggle("is-active", dotIndex === currentSlide);
-  });
-}
-
-sliderButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const direction = button.dataset.slide === "next" ? 1 : -1;
-    showSlide(currentSlide + direction);
-  });
-});
-
-let touchStartX = 0;
-
-if (photoTrack) {
-  photoTrack.addEventListener(
-    "touchstart",
-    (event) => {
-      touchStartX = event.touches[0].clientX;
-    },
-    { passive: true }
-  );
-
-  photoTrack.addEventListener(
-    "touchend",
-    (event) => {
-      const touchEndX = event.changedTouches[0].clientX;
-      const distance = touchEndX - touchStartX;
-
-      if (Math.abs(distance) > 40) {
-        showSlide(currentSlide + (distance < 0 ? 1 : -1));
-      }
-    },
-    { passive: true }
-  );
-}
-
-if (photoSlides.length > 1) {
-  window.setInterval(() => {
-    showSlide(currentSlide + 1);
-  }, 5500);
-}
-
 const personalDetails = [
   ["Full Name", "Mohammed Yousuf"],
   ["Date of Birth", "October 28, 2004"],
   ["Age", "21 Years"],
-  ["Height", "To be updated"],
+  ["Height", "5'6\""],
   ["Complexion", "Fair"],
   ["Build", "Average"],
   ["Religion", "Islam"],
@@ -166,12 +112,12 @@ const biodataSections = [
   {
     title: "Education",
     body:
-      "I am currently pursuing my Bachelor's in Computer Science & Information Technology at Monroe University in the United States. My expected graduation is in 2027. I am interested in software development and practical technology that can be used in real situations.",
+      "I am currently pursuing my Bachelor's degree at Monroe University in the United States. My expected graduation is in 2027. I believe education should help a person grow in responsibility, discipline, and practical understanding.",
   },
   {
     title: "Work & Professional Background",
     body:
-      "Along with my studies, I work in a convenience retail store in the United States. I also help the same business with software-related work when needed. I have been involved in building a customer loyalty application and simple tools that support store operations and customer engagement. This has helped me learn how technology can be useful in a real business setting.",
+      "Along with my studies, I work in a convenience retail store in the United States. I also do freelance work for the same business when needed. This experience has helped me understand responsibility, customer service, daily business operations, and the value of being dependable.",
   },
   {
     title: "Family Details",
@@ -201,7 +147,7 @@ const biodataSections = [
   {
     title: "Interests",
     body:
-      "My interests include Islamic learning, beneficial lectures, Islamic history, technology, software development, business ideas, and self-improvement.",
+      "My interests include Islamic learning, beneficial lectures, Islamic history, family values, business ideas, and self-improvement.",
   },
   {
     title: "Future Vision",
@@ -214,109 +160,6 @@ const biodataSections = [
       "I am looking for someone who values deen, good character, sincerity, modesty, respect, family, emotional maturity, and communication. I hope for a marriage where both people are kind to each other and understand the responsibility of building a home. I prefer simplicity in marriage and believe family involvement is important. Marriage timeline: Open to marriage with mutual understanding while continuing education and professional growth.",
   },
 ];
-
-function loadImageData(url) {
-  return new Promise((resolve) => {
-    const image = new Image();
-    if (window.location.protocol.startsWith("http")) {
-      image.crossOrigin = "anonymous";
-    }
-
-    image.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = image.naturalWidth;
-      canvas.height = image.naturalHeight;
-      const context = canvas.getContext("2d");
-      context.drawImage(image, 0, 0);
-      resolve({
-        dataUrl: canvas.toDataURL("image/jpeg", 0.9),
-        width: image.naturalWidth,
-        height: image.naturalHeight,
-        element: image,
-      });
-    };
-
-    image.onerror = () => resolve(null);
-    image.src = url;
-  });
-}
-
-function addImageContained(doc, image, x, y, maxWidth, maxHeight) {
-  if (!image) return;
-
-  const ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
-  const width = image.width * ratio;
-  const height = image.height * ratio;
-  const centeredX = x + (maxWidth - width) / 2;
-  const centeredY = y + (maxHeight - height) / 2;
-
-  doc.addImage(image.dataUrl, "JPEG", centeredX, centeredY, width, height);
-}
-
-function addImageCover(doc, image, x, y, boxWidth, boxHeight) {
-  if (!image) return;
-
-  const canvas = document.createElement("canvas");
-  const scale = Math.max(boxWidth / image.width, boxHeight / image.height);
-  const sourceWidth = boxWidth / scale;
-  const sourceHeight = boxHeight / scale;
-  const sourceX = (image.width - sourceWidth) / 2;
-  const sourceY = (image.height - sourceHeight) / 2;
-  canvas.width = Math.round(boxWidth * 8);
-  canvas.height = Math.round(boxHeight * 8);
-  const context = canvas.getContext("2d");
-
-  context.drawImage(
-    image.element,
-    sourceX,
-    sourceY,
-    sourceWidth,
-    sourceHeight,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  doc.addImage(canvas.toDataURL("image/jpeg", 0.9), "JPEG", x, y, boxWidth, boxHeight);
-}
-
-async function addPhotoPage(doc) {
-  const formalPhoto = await loadImageData("profile-photo.jpg");
-  const naturalPhoto = await loadImageData("secondary-photo.jpg");
-
-  if (!formalPhoto && !naturalPhoto) return;
-
-  doc.addPage();
-  doc.setFillColor(255, 253, 248);
-  doc.rect(0, 0, 210, 297, "F");
-  doc.setDrawColor(185, 143, 57);
-  doc.setLineWidth(0.8);
-  doc.rect(9, 9, 192, 279);
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(18);
-  doc.setTextColor(18, 63, 50);
-  doc.text("Photos", 105, 24, { align: "center" });
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9.8);
-  doc.setTextColor(64, 80, 72);
-  doc.text("Included for family review.", 105, 32, { align: "center" });
-
-  doc.setDrawColor(185, 143, 57);
-  doc.setLineWidth(0.45);
-  doc.rect(14, 44, 88, 160);
-  doc.rect(108, 44, 88, 160);
-  addImageCover(doc, formalPhoto, 16, 46, 84, 156);
-  addImageCover(doc, naturalPhoto, 110, 46, 84, 156);
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(10);
-  doc.setTextColor(18, 63, 50);
-  doc.text("Formal Photo", 58, 214, { align: "center" });
-  doc.text("Additional Photo", 152, 214, { align: "center" });
-}
 
 function addFooter(doc) {
   const pageCount = doc.internal.getNumberOfPages();
@@ -504,7 +347,6 @@ async function generateBiodataPdf() {
     },
   });
 
-  await addPhotoPage(doc);
   addFooter(doc);
   doc.save("Mohammed_Yousuf_Marriage_Biodata.pdf");
 }
