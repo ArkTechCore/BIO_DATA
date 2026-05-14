@@ -117,7 +117,7 @@ const biodataSections = [
   {
     title: "Work & Professional Background",
     body:
-      "Along with my studies, I work in a convenience retail store in the United States. I also do freelance work for the same business when needed. On the freelance side, I am working on a customer loyalty application and a deal engine with backend support for the business. I keep this work practical and simple, mainly focused on helping daily store operations run more smoothly.",
+      "Along with my studies, I work in a convenience retail store in the United States. I also do freelance work for the same business when needed. On the freelance side, I am working on a customer loyalty application and a deal engine with backend support for the business.",
   },
   {
     title: "Family Details",
