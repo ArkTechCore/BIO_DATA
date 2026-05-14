@@ -112,12 +112,12 @@ const biodataSections = [
   {
     title: "Education",
     body:
-      "I am currently pursuing my Bachelor's degree at Monroe University in the United States. My expected graduation is in 2027. I believe education should help a person grow in responsibility, discipline, and practical understanding.",
+      "I am currently pursuing my Bachelor's degree at Monroe University in the United States. I am expected to finish by the end of this year. I believe education should help a person grow in responsibility, discipline, and practical understanding.",
   },
   {
     title: "Work & Professional Background",
     body:
-      "Along with my studies, I work in a convenience retail store in the United States. I also do freelance work for the same business when needed. This experience has helped me understand responsibility, customer service, daily business operations, and the value of being dependable.",
+      "Along with my studies, I work in a convenience retail store in the United States. I also do freelance work for the same business when needed. On the freelance side, I am working on a customer loyalty application and a deal engine with backend support for the business. I keep this work practical and simple, mainly focused on helping daily store operations run more smoothly.",
   },
   {
     title: "Family Details",
@@ -135,29 +135,9 @@ const biodataSections = [
       "I follow the Hanafi madhhab and Ahle Sunnah wal Jama'ah. Faith is important in my life, and I try to stay connected with deen, offer salah regularly, and keep Islamic principles in mind in personal and family matters. I appreciate Islamic learning, beneficial lectures, and reminders that help a person improve. I believe marriage should be built on deen, sincerity, respect, mercy, and understanding.",
   },
   {
-    title: "About Me",
-    body:
-      "I am generally calm and practical by nature. I prefer speaking clearly, keeping respect in conversations, and handling responsibilities without making unnecessary noise about them. I like building things, solving problems, learning new ideas, and thinking deeply about the future. At the same time, I believe a person should remain humble and easy to deal with.",
-  },
-  {
     title: "Lifestyle",
     body:
       "I prefer a simple and disciplined lifestyle. I do not smoke or drink alcohol. I value modesty, clean habits, respect for family, and a balanced approach between deen and dunya.",
-  },
-  {
-    title: "Interests",
-    body:
-      "My interests include Islamic learning, beneficial lectures, Islamic history, family values, business ideas, and self-improvement.",
-  },
-  {
-    title: "Future Vision",
-    body:
-      "InshaAllah, I want to complete my education and continue growing professionally. I hope to use my skills in a meaningful way and keep improving with time. More than anything, I want a stable halal future, meaningful work, and a family life built with Islamic values and responsibility.",
-  },
-  {
-    title: "Marriage Expectations",
-    body:
-      "I am looking for someone who values deen, good character, sincerity, modesty, respect, family, emotional maturity, and communication. I hope for a marriage where both people are kind to each other and understand the responsibility of building a home. I prefer simplicity in marriage and believe family involvement is important. Marriage timeline: Open to marriage with mutual understanding while continuing education and professional growth.",
   },
 ];
 
